@@ -11,10 +11,6 @@
 
     firebase.initializeApp(config);
     
-    $("#addButton").on("click", function (event) {
-    event.preventDefault();
-    console.log("clicked");
-    
     var database = firebase.database();
 
     //Initial Values
@@ -22,6 +18,13 @@
     var role = "";
     var startDate = "";
     var rate = 0;
+
+    //On click function
+
+    $("#addButton").on("click", function (event) {
+    event.preventDefault();
+    console.log("clicked");
+
 
     //grab inputs
     name = $("#name-input").val().trim();
@@ -35,7 +38,7 @@
     console.log(rate);
     // Code for "setting values in the database"
     
-    database.ref().set({
+    database.ref().push({
         name: name,
         role: role,
         startDate: startDate,
@@ -43,12 +46,24 @@
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
 
-    //update the rows on the html
-    var addEmployee = $("<tr>");
 
-    $("#employeeList").append(addEmployee);
-
+    
    
 
 
 })
+
+//adding child to firebase to create an employee list
+
+database.ref().on("child_added", function(childSnapshot){
+    console.log(childSnapshot.val().name);
+    console.log(childSnapshot.val().role);
+    console.log(childSnapshot.val().startDate);
+    console.log(childSnapshot.val().rate);
+
+    //update the rows on the html
+    // var addEmployee = $("<tr>");
+
+    $(".employeeList").append("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().role + "</td><td>" + childSnapshot.val().startDate + "</td><td>" + childSnapshot.val().rate + "</td>");
+})
+
