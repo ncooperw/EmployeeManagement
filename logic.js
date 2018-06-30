@@ -33,8 +33,9 @@
     console.log(startDate);
     console.log(rate);
     // Code for "setting values in the database"
+    
     database.ref().push({
-        name: name,
+        name= name,
         role = role,
         startDate = startDate,
         rate = rate
