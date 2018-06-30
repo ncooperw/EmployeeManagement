@@ -8,6 +8,7 @@
         storageBucket: "group-project-c5951.appspot.com",
         messagingSenderId: "205795254538"
     };
+
     firebase.initializeApp(config);
     
     $("#addButton").on("click", function (event) {
@@ -34,11 +35,12 @@
     console.log(rate);
     // Code for "setting values in the database"
     
-    database.ref().push({
-        name= name,
-        role = role,
-        startDate = startDate,
-        rate = rate
+    database.ref().set({
+        name: name,
+        role: role,
+        startDate: startDate,
+        rate: rate,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
 
     //update the rows on the html
