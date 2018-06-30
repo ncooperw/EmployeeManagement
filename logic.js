@@ -33,5 +33,17 @@ database.ref().push({
 
 $("#employeeList").append(addEmployee);
 
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+ // Initialize Firebase
+ var config = {
+   apiKey: "AIzaSyD1F6HkOSNomp5qXzTZq3rJmD3GmNjSv_c",
+   authDomain: "group-project-c5951.firebaseapp.com",
+   databaseURL: "https://group-project-c5951.firebaseio.com",
+   projectId: "group-project-c5951",
+   storageBucket: "group-project-c5951.appspot.com",
+   messagingSenderId: "205795254538"
+ };
+ firebase.initializeApp(config);
+
 
 })
